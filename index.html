@@ -8,28 +8,35 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <h1>Build Your Own Meme</h1>
+  <h1>Create Memetic Gold</h1>
   <form action="#">
     <ul>
       <li>
-        <label for="url">Upload Image</label>
+        <label for="url">Step 1: Choose an image</label>
         <input type="url" name="url" id='image' placeholder="Input Image link">
+        <button class="img-upload">Upload</button>
       </li>
       <li>
-        <label for="top-text">Top Text</label>
+        <label for="top-text">Step 2: Write some witty top text</label>
         <input type="text" name="top-text" id="top-text" placeholder="Enter Text For Top">
       </li>
       <li>
-        <label for="bottom-text">Bottom Text</label>
+        <label for="bottom-text">Step 3: Write some pithy bottom text</label>
         <input type="text" name="bottom-text" id='bottom-text'placeholder="Enter Text For Bottom">
       </li>
       <li>
-        <label for="text-color">Text Color</label>
+        <label for="font-size">Step 4: Find that just right font size</label>
+        <input type="range" name='font-size' id='font-size' min="10" max="60" step="1">
+      </li>
+      <li>
+        <label for="text-color">Step 5: Make it pop</label>
         <input type="color" name="text-color" id="text-color">
       </li>
     </ul>
-    <input type="submit" id='submit' value="Generate Your Meme">
+    <label for="submit">Looking good?</label>
+    <input type="submit" id='submit' name='submit' value="Go viral!">
   </form>
+  <div class="preview"></div>
   <div class="created-memes"></div>
   <script src="app.js"></script>
 </body>
