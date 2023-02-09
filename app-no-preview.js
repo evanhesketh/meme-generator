@@ -1,4 +1,4 @@
-// reset color and text size after preview submitted
+
 function createNewMeme() {
   const newContainer = document.createElement('div');
   newContainer.className = 'new-meme';
@@ -6,11 +6,16 @@ function createNewMeme() {
 }
 
 function createNewImage() {
+  const imgDiv = document.createElement('div');
   const newImg = document.createElement('img');
   const img = document.querySelector('#image');
 
   newImg.src = img.value;
-  return newImg;
+  newImg.className = 'image';
+  imgDiv.appendChild(newImg);
+  imgDiv.className = 'img-div';
+
+  return imgDiv;
 }
 
 function createTopText() {
@@ -48,6 +53,8 @@ function createRemoveButton() {
   removeBtn.innerText = 'Remove Meme';
   btnDiv.appendChild(removeBtn);
 
+  removeMeme();
+
   return btnDiv;
 }
 
@@ -59,25 +66,14 @@ function handleFormSubmission() {
 
   const memeContainer = document.querySelector('.created-memes');
   const newContainer = createNewMeme();
-  const newImg = createNewImage();
+  const imgDiv = createNewImage();
   const topDiv = createTopText();
   const bottomDiv = createBottomText();
   const btnDiv = createRemoveButton();
-  const newImgDiv = document.createElement('div');
 
-  if (newImg.getAttribute('src') === '') {
-    alert("Upload an image");
-    resetForm();
-
-    return
-  }
-
-  newImgDiv.className = 'img-div';
-
-  newImgDiv.appendChild(newImg);
-  newContainer.appendChild(newImgDiv);
-  newImgDiv.appendChild(topDiv);
-  newImgDiv.appendChild(bottomDiv);
+  newContainer.appendChild(imgDiv);
+  imgDiv.appendChild(topDiv);
+  imgDiv.appendChild(bottomDiv);
   newContainer.appendChild(btnDiv);
   memeContainer.appendChild(newContainer);
 
@@ -101,9 +97,7 @@ function resetForm() {
   const bottomText = document.querySelector('#bottom-text');
   const fontSize = document.querySelector('#font-size');
   const textColor = document.querySelector('#text-color');
-  const preview = document.querySelector('.preview');
 
-  preview.innerHTML = '';
   img.value = '';
   topText.value = '';
   bottomText.value = '';
@@ -111,72 +105,9 @@ function resetForm() {
   textColor.value = '#000000';
 }
 
-function preview() {
-  const uploadBtn = document.querySelector('.img-upload');
-  const topDiv = document.createElement('div');
-  const bottomDiv = document.createElement('div');
-  const imgPreviewDiv = document.createElement('div');
-  const memePreview = document.createElement('div');
-  const topText = document.querySelector('#top-text');
-  const bottomText = document.querySelector('#bottom-text');
-  const textColor = document.querySelector('#text-color');
-  const fontSize = document.querySelector('#font-size');
-
-  imgPreviewDiv.className = 'img-div';
-  memePreview.className = 'meme-preview';
-  topDiv.className = 'meme-text-top';
-  bottomDiv.className = 'meme-text-bottom';
-
-  uploadBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    const preview = document.querySelector('.preview');
-
-    const imgPreview = document.createElement('img');
-    const img = document.querySelector('#image');
-
-
-    preview.innerHTML = '<h2>Preview</h2>';
-    imgPreview.src = img.value;
-
-    imgPreviewDiv.appendChild(imgPreview);
-    memePreview.appendChild(imgPreviewDiv);
-    preview.appendChild(memePreview);
-})
-
-topText.addEventListener('keyup', function(event) {
-
-
-  topDiv.style.color = '#000000';
-  topDiv.style.fontSize = '35px';
-  topDiv.innerText = event.target.value;
-  memePreview.appendChild(topDiv);
-})
-
-bottomText.addEventListener('keyup', function(event) {
-
-
-  bottomDiv.style.color = '#000000';
-  bottomDiv.style.fontSize = '35px';
-  bottomDiv.innerText = event.target.value;
-  memePreview.appendChild(bottomDiv);
-})
-
-textColor.addEventListener('input', function(event) {
-  topDiv.style.color = event.target.value;
-  bottomDiv.style.color = event.target.value;
-})
-
-fontSize.addEventListener('input', function(event) {
-  topDiv.style.fontSize = event.target.value + 'px';
-  bottomDiv.style.fontSize = event.target.value + 'px';
-})
-
-}
-
 handleFormSubmission();
-removeMeme();
-preview();
+
+
 
 
 

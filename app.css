@@ -10,18 +10,17 @@ h1 {
     font-size: 50px;
 }
 
-h2 {
-    color: peachpuff;
-}
-
 img {
     width: 250px;
     margin-bottom: 10px;
 }
 
-.new-meme, .meme-preview {
+.img-div {
     position: relative;
+}
+.new-meme {
     margin-top: 35px;
+    text-align: center;
 }
 
 .meme-text-top {
@@ -38,10 +37,6 @@ img {
     width: 250px;
     text-align: center;
     font-weight: bold;
-}
-
-.btn-container {
-    text-align: center;
 }
 
 ul {
@@ -90,19 +85,13 @@ input::placeholder {
     font-weight: bold;
 }
 
-@media screen and (min-width: 750px) {
-    body {
+@media screen and (min-width: 600px) {
+    /* body {
         display: block;
-    }
+    } */
 
     h1 {
         text-align: center;
-    }
-
-    form {
-        text-align: left;
-        margin-top: 40px;
-        margin-left: 150px;
     }
 
     li:nth-of-type(2), li:nth-of-type(3) {
@@ -113,16 +102,17 @@ input::placeholder {
         display: inline;
     }
 
-    .preview {
-        margin-left: 150px;
+    #submit {
+        margin-top: 10px;
     }
 
     .created-memes {
-        position: absolute;
-        right: 150px;
-        top: 70px;
-        height: 100vh;
-        overflow-y: scroll;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 95%;
+        margin-left: 5%;
+
     }
 
 }
