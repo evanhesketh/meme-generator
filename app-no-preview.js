@@ -10,6 +10,11 @@ function createNewImage() {
   const newImg = document.createElement('img');
   const img = document.querySelector('#image');
 
+  if (img.value === '') {
+    alert("Don't forget to provide an image link!");
+    return;
+  }
+
   newImg.src = img.value;
   newImg.className = 'image';
   imgDiv.appendChild(newImg);
@@ -53,42 +58,7 @@ function createRemoveButton() {
   removeBtn.innerText = 'Remove Meme';
   btnDiv.appendChild(removeBtn);
 
-  removeMeme();
-
   return btnDiv;
-}
-
-function handleFormSubmission() {
-  const submit = document.querySelector('#submit');
-
-  submit.addEventListener('click', function(event) {
-    event.preventDefault();
-
-  const memeContainer = document.querySelector('.created-memes');
-  const newContainer = createNewMeme();
-  const imgDiv = createNewImage();
-  const topDiv = createTopText();
-  const bottomDiv = createBottomText();
-  const btnDiv = createRemoveButton();
-
-  newContainer.appendChild(imgDiv);
-  imgDiv.appendChild(topDiv);
-  imgDiv.appendChild(bottomDiv);
-  newContainer.appendChild(btnDiv);
-  memeContainer.appendChild(newContainer);
-
-  resetForm();
-})
-}
-
-function removeMeme() {
-  const memeContainer = document.querySelector('.created-memes');
-
-  memeContainer.addEventListener('click', function(event) {
-    if (event.target.tagName === 'BUTTON') {
-      event.target.parentElement.parentElement.remove();
-    }
-  })
 }
 
 function resetForm() {
@@ -105,7 +75,39 @@ function resetForm() {
   textColor.value = '#000000';
 }
 
-handleFormSubmission();
+function handleFormSubmission(event) {
+  event.preventDefault();
+
+  const memeContainer = document.querySelector('.created-memes');
+  const newContainer = createNewMeme();
+  const imgDiv = createNewImage();
+  const topDiv = createTopText();
+  const bottomDiv = createBottomText();
+  const btnDiv = createRemoveButton();
+
+  imgDiv.appendChild(topDiv);
+  imgDiv.appendChild(bottomDiv);
+  newContainer.appendChild(imgDiv);
+  newContainer.appendChild(btnDiv);
+  memeContainer.appendChild(newContainer);
+
+  resetForm();
+}
+
+function runProgram() {
+  const submit = document.querySelector('#submit');
+  const memeContainer = document.querySelector('.created-memes');
+
+  submit.addEventListener('click', handleFormSubmission)
+
+  memeContainer.addEventListener('click', function(event) {
+    if (event.target.tagName === 'BUTTON') {
+      event.target.parentElement.parentElement.remove();
+    }
+  })
+}
+
+runProgram();
 
 
 

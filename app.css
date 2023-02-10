@@ -11,7 +11,7 @@ h1 {
 }
 
 img {
-    width: 250px;
+    width: 300px;
     margin-bottom: 10px;
 }
 
@@ -34,8 +34,9 @@ img {
 }
 
 .meme-text-top, .meme-text-bottom {
-    width: 250px;
+    width: 300px;
     text-align: center;
+    font-family: 'Oswald', sans-serif;
     font-weight: bold;
 }
 
@@ -51,7 +52,7 @@ form {
 label {
     display: block;
     padding-bottom: 5px;
-    color: pink;
+    color: rgb(251, 207, 214);
     font-size: 25px;
 }
 
@@ -66,11 +67,7 @@ input {
     padding: 0;
 }
 
-#font-size {
-    padding: 0;
-}
-
-#submit {
+#font-size, #submit {
     padding: 0;
 }
 
@@ -86,16 +83,9 @@ input::placeholder {
 }
 
 @media screen and (min-width: 600px) {
-    /* body {
-        display: block;
-    } */
 
     h1 {
         text-align: center;
-    }
-
-    li:nth-of-type(2), li:nth-of-type(3) {
-        display: block;
     }
 
     label {
@@ -108,11 +98,11 @@ input::placeholder {
 
     .created-memes {
         display: flex;
+        justify-content: center;
         gap: 10px;
         flex-wrap: wrap;
         width: 95%;
         margin-left: 5%;
-
     }
 
 }
